@@ -1,4 +1,4 @@
-# Website-Portfoli
+# Website-Portfolio
 
 <h1 align="center">Hi 👋, I'm Anish Kumar Vedant</h1>
 <h3 align="center">A passionate cybersecurity analyst</h3>

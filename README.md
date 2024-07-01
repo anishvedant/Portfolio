@@ -20,8 +20,6 @@
 <a href="https://facebook.com/anish.vedant.3" target="_blank"><img src="https://img.shields.io/badge/Facebook-E4405F?style=for-the-badge&logo=instagram&logoColor=blue" target="_blank"></a>
 </div>
 
-<a href="https://linkedin.com/in/anishkumarvedant" target="blank"><img align="center" src="https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Social/linked-in-alt.svg" alt="anishkumarvedant" height="30" width="40" /></a><a href="https://fb.com/anish.vedant.3" target="blank"><img align="center" src="https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Social/facebook.svg" alt="anish.vedant.3" height="30" width="40" /></a><a href="https://instagram.com/anishvedant_22" target="blank"><img align="center" src="https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Social/instagram.svg" alt="anishvedant_22" height="30" width="40" /></a></p>
-
 <h3 align="left">Languages and Tools:</h3>
 <p align="left">
 <img src="https://raw.githubusercontent.com/teamedwardforever/Readme-Generator/71f25dd8b98329b168142a6b782a107b75eab178/svg/Skills/Languages/c-original.svg" alt="C" width="40" height="40"/>

@@ -6,11 +6,11 @@
 
 - 🔭 I’m currently working on **Password Manager**
 - 👯 I’m looking to collaborate on **any cybersecurity related projects**
-- 🌱 I’m currently learning **Cybersecurity and Networks **
-- 💬 Ask me about **anything related to cybersecurity **
+- 🌱 I’m currently learning **Cybersecurity and Networks**
+- 💬 Ask me about **anything related to cybersecurity**
 
 - 👨‍💻 All of my projects are available at **https://anishvedant.github.io/Portfolio/**
-- ⚡ Fun fact **I use backspace more than arrows**
+- ⚡ Fun fact: **I use backspace more than arrows**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">

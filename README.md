@@ -1,5 +1,4 @@
 <div align="center">
- 
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&pause=1000&color=22C55E&center=true&vCenter=true&width=435&lines=Hi,+I'm+Anish+Kumar+Vedant;Cybersecurity+Analyst;Security%2B+Certified;Blue+Team+Defender;Python+Automator" alt="Typing SVG" />
 
   <h3 align="center">Fortifying the digital world, one byte at a time. 🛡️</h3>
@@ -45,19 +44,11 @@ I am a **Cybersecurity Engineer** and **Graduate Research Assistant** bridging t
 
 ---
 
-### 🏆 GitHub Trophies & Activity
+### 📜 Certifications & Achievements
 
-<div align="center">
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=anishvedant&theme=radical&no-frame=true&column=6&margin-w=15&margin-h=15" alt="anishvedant trophies" />
-  </a>
-</div>
-
-<br>
-
-<div align="center">
-  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=anishvedant&theme=radical" alt="Anish's Profile Details" />
-</div>
+- 🔐 **CompTIA Security+** (SY0-701)
+- ☁️ **Google Cybersecurity Professional**
+- 🎓 **Master's in Cybersecurity & Networks** (GPA 3.83)
 
 ---
 

@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anish Kumar Vedant - Cybersecurity Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: #020c15;
+      --card: #020a12;
+      --card-soft: #071520;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --accent-strong: #4ade80;
+      --text-primary: #e2e8f0;
+      --text-muted: #94a3b8;
+      --border-subtle: #1f2933;
+      --danger: #fb7185;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+      --nav-height: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", "Segoe UI", sans-serif;
+      background: #000;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    #matrix-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: relative;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.05), transparent 55%),
+        radial-gradient(circle at bottom, rgba(8, 47, 73, 0.45), transparent 60%);
+    }
+
+    .site-header {
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to right,
+        rgba(2, 6, 23, 0.96),
+        rgba(15, 23, 42, 0.96)
+      );
+      border-bottom: 1px solid rgba(15, 118, 110, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .brand span {
+      color: var(--accent-strong);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      padding-bottom: 0.15rem;
+    }
+
+    nav::-webkit-scrollbar {
+      height: 0;
+    }
+
+    .nav-link {
+      position: relative;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      padding-bottom: 0.1rem;
+      white-space: nowrap;
+      transition: color 0.18s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.25rem;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        var(--accent),
+        #0ea5e9,
+        var(--accent)
+      );
+      opacity: 0;
+      transform: scaleX(0.3);
+      transform-origin: center;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent-strong);
+    }
+
+    .nav-link.active::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.25rem;
+      display: grid;
+      grid-template-columns: minmax(240px, 270px) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .profile-card {
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.12), transparent 55%),
+        linear-gradient(to bottom right, #020617, #020a12);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem 1.4rem 1.3rem;
+      border: 1px solid rgba(15, 118, 110, 0.5);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-avatar {
+      width: 82px;
+      height: 82px;
+      border-radius: 28px;
+      background: radial-gradient(circle at top, #22c55e, #16a34a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      box-shadow: 0 18px 40px rgba(16, 185, 129, 0.35);
+    }
+
+    .profile-avatar span {
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+    }
+
+    .profile-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .profile-role {
+      font-size: 0.9rem;
+      color: var(--accent-strong);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .profile-summary {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-top: 0.4rem;
+    }
+
+    .profile-meta {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .profile-meta li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .meta-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-top: 0.35rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.25rem;
+    }
+
+    .btn-pill {
+      border-radius: 999px;
+      padding: 0.5rem 1.1rem;
+      font-size: 0.82rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.18s ease, background 0.18s ease,
+        transform 0.12s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-pill span {
+      font-size: 1rem;
+    }
+
+    .btn-pill.primary {
+      border-color: rgba(34, 197, 94, 0.9);
+      background: radial-gradient(circle at top, #22c55e, #15803d);
+      color: #022c22;
+      box-shadow: 0 14px 30px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-pill.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(34, 197, 94, 0.6);
+    }
+
+    .btn-pill.secondary:hover {
+      border-color: rgba(56, 189, 248, 0.85);
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .profile-footer {
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .profile-footer span.highlight {
+      color: rgba(248, 250, 252, 0.9);
+      font-weight: 500;
+    }
+
+    .content {
+      background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.06), transparent 55%),
+        linear-gradient(to bottom right, #020617, #020c15);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(15, 118, 110, 0.55);
+      box-shadow: var(--shadow-soft);
+      padding: 1.6rem 1.4rem 1.8rem;
+      min-height: 520px;
+      max-height: calc(100vh - var(--nav-height) - 3.3rem);
+      overflow-y: auto;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .section-heading {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading span {
+      color: var(--accent-strong);
+    }
+
+    .section-intro {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 54rem;
+      margin-bottom: 1.4rem;
+    }
+
+    /* hero layout: text fills full width and wraps under floated terminal */
+    .hero-grid {
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-main {
+      display: block;
+    }
+
+    .hero-main::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .hero-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-focus {
+      margin-top: 0.35rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.8rem;
+    }
+
+    .hero-focus span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: rgba(148, 163, 184, 0.9);
+      font-size: 0.77rem;
+    }
+
+    .hero-focus span.value {
+      color: var(--text-primary);
+    }
+
+    .terminal-card {
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.14), transparent 55%),
+        radial-gradient(circle at bottom, rgba(15, 23, 42, 0.95), #020617);
+      border-radius: var(--radius-md);
+      padding: 1.05rem 1.05rem 1rem;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.8);
+      font-family: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      color: #d1fae5;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      float: right;
+      max-width: 340px;
+      width: 40%;
+      margin: 0 0 1rem 1.5rem;
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .dots {
+      display: flex;
+      gap: 0.24rem;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #ef4444;
+    }
+
+    .dot:nth-child(2) {
+      background: #facc15;
+    }
+
+    .dot:nth-child(3) {
+      background: #22c55e;
+    }
+
+    .terminal-title {
+      font-size: 0.7rem;
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    .terminal-body {
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      background: transparent;
+      padding-bottom: 0.25rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .terminal-body:hover {
+      scrollbar-width: thin;
+    }
+
+    .terminal-body::-webkit-scrollbar {
+      height: 0;
+    }
+
+    .terminal-body:hover::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .terminal-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 999px;
+    }
+
+    .terminal-body:hover::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.75);
+    }
+
+    .terminal-body .cmd {
+      color: #4ade80;
+    }
+
+    .terminal-body .output {
+      color: #e5e7eb;
+    }
+
+    .terminal-body .accent {
+      color: #2dd4bf;
+    }
+
+    .terminal-body .comment {
+      color: #6b7280;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .stat-card {
+      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.98), #020617);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 0.9rem;
+      border: 1px solid rgba(30, 64, 175, 0.4);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 0.16rem;
+    }
+
+    .stat-number {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-strong);
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .stat-caption {
+      font-size: 0.75rem;
+      color: rgba(148, 163, 184, 0.95);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.65);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem;
+      color: rgba(226, 232, 240, 0.95);
+      white-space: nowrap;
+    }
+
+    .pill.alt {
+      border-color: rgba(34, 197, 94, 0.8);
+      background: rgba(5, 46, 22, 0.9);
+      color: #bbf7d0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    .stack-section {
+      margin-bottom: 1.25rem;
+    }
+
+    .stack-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(148, 163, 184, 0.95);
+      margin-bottom: 0.5rem;
+    }
+
+    .item-card {
+      background: linear-gradient(to bottom right, #020617, #020b15);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      padding: 0.8rem 0.85rem 0.85rem;
+      margin-bottom: 0.7rem;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.85);
+    }
+
+    .item-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.78rem;
+      color: rgba(148, 163, 184, 0.98);
+      margin-top: 0.08rem;
+      margin-bottom: 0.34rem;
+    }
+
+    .item-description {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .item-description strong {
+      color: rgba(226, 232, 240, 0.94);
+      font-weight: 500;
+    }
+
+    .item-list {
+      margin-top: 0.4rem;
+      padding-left: 1.1rem;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .item-list li + li {
+      margin-top: 0.16rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+      margin-top: 0.3rem;
+    }
+
+    .project-card {
+      background: linear-gradient(to bottom right, #020617, #020b15);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.86);
+      padding: 0.9rem 0.9rem 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .project-title {
+      font-size: 0.97rem;
+      font-weight: 600;
+    }
+
+    .project-tagline {
+      font-size: 0.78rem;
+      color: rgba(148, 163, 184, 0.95);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .project-description {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: rgba(148, 163, 184, 0.95);
+    }
+
+    .project-link {
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    .project-link span.arrow {
+      font-size: 0.9rem;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+    }
+
+    .badge {
+      font-size: 0.74rem;
+      padding: 0.16rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: rgba(226, 232, 240, 0.95);
+      background: rgba(15, 23, 42, 0.95);
+      white-space: nowrap;
+    }
+
+    .badge.primary {
+      border-color: rgba(34, 197, 94, 0.9);
+      background: rgba(6, 78, 59, 0.9);
+      color: #bbf7d0;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.4rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .cert-card {
+      background: linear-gradient(to bottom right, #020617, #020b15);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(15, 23, 42, 0.95);
+      padding: 0.85rem 0.9rem;
+      box-shadow: 0 13px 30px rgba(0, 0, 0, 0.86);
+    }
+
+    .cert-title {
+      font-size: 0.93rem;
+      font-weight: 600;
+    }
+
+    .cert-issuer {
+      font-size: 0.8rem;
+      color: rgba(148, 163, 184, 0.96);
+      margin-top: 0.08rem;
+      margin-bottom: 0.32rem;
+    }
+
+    .cert-notes {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .section-subtitle {
+      font-size: 0.86rem;
+      color: rgba(148, 163, 184, 0.96);
+      margin-bottom: 0.4rem;
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1rem;
+      margin-top: 0.6rem;
+    }
+
+    .site-footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.5rem 1.25rem 1.4rem;
+      font-size: 0.78rem;
+      color: rgba(148, 163, 184, 0.85);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .site-footer span.strong {
+      color: rgba(226, 232, 240, 0.96);
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 960px;
+      }
+
+      .content {
+        max-height: none;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 0.7rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+        height: auto;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 0.95rem;
+      }
+
+      .layout {
+        padding: 1.1rem 1rem 1.6rem;
+      }
+
+      .profile-card {
+        padding: 1.3rem 1.2rem 1.2rem;
+      }
+
+      .content {
+        padding: 1.3rem 1.1rem 1.4rem;
+      }
+
+      .hero-grid {
+        display: block;
+      }
+
+      .terminal-card {
+        float: none;
+        max-width: 100%;
+        width: 100%;
+        margin: 1rem 0 1rem 0;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cert-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .split-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-title {
+        font-size: 1.45rem;
+      }
+
+      .section-heading {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .profile-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-pill {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix-bg"></canvas>
+
+  <div class="overlay">
+    <header class="site-header">
+      <div style="width:100%; display:flex; justify-content:center;">
+        <nav>
+          <a href="#" class="nav-link active" data-section="home">Home</a>
+          <a href="#" class="nav-link" data-section="experience">Experience &amp; Skills</a>
+          <a href="#" class="nav-link" data-section="projects">Projects</a>
+          <a href="#" class="nav-link" data-section="certs">Certifications &amp; Achievements</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="profile-card">
+        <div class="profile-avatar">
+          <span>🧑‍💻</span>
+        </div>
+        <div>
+          <div class="profile-role">Cybersecurity Engineer</div>
+          <div class="profile-name">Anish Kumar Vedant</div>
+        </div>
+
+        <ul class="profile-meta">
+          <li>
+            <span class="meta-dot"></span>
+            <span>Actively seeking full time cybersecurity roles including SOC analyst, cybersecurity analyst, penetration tester, threat intelligence analyst, information security analyst, security engineer, cloud security engineer, security operations engineer, GRC analyst, security compliance analyst, IAM engineer, and security automation engineer.</span>
+          </li>
+          <li>
+            <span class="meta-dot"></span>
+            <span>One year of internship experience at Peak Power Consultancy, plus research experience as an undergraduate researcher and as a graduate research assistant working on GPU security.</span>
+          </li>
+          <li>
+            <span class="meta-dot"></span>
+            <span>Hands on with BSides CTFs, Pros v Joes style SOC simulations, Hack The Box, TryHackMe, and multiple projects, and comfortable explaining technical findings in plain language to non technical teams.</span>
+          </li>
+        </ul>
+        <div class="profile-links">
+          <a
+            class="btn-pill primary"
+            href="https://www.linkedin.com/in/anishkumarvedant/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>🔗</span>
+            LinkedIn
+          </a>
+          <a
+            class="btn-pill secondary"
+            href="https://github.com/anishvedant"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>💻</span>
+            GitHub
+          </a>
+          <a
+            class="btn-pill secondary"
+            href="anish-kumar-vedant-resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>📄</span>
+            Download resume
+          </a>
+        </div>
+      </aside>
+
+      <section class="content">
+        <section id="home" class="tab-section active">
+          <div class="section-title">Home</div>
+          <h1 class="section-heading">
+  Security+ certified <span>cybersecurity engineer</span> focused on practical defense.
+</h1>
+
+
+          <div class="hero-grid">
+            <div class="hero-main">
+
+              <aside class="terminal-card">
+                <div class="terminal-header">
+                  <div class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </div>
+                  <div class="terminal-title">anish@portfolio: ~</div>
+                </div>
+                <div class="terminal-body">
+                  <p class="cmd">$ whoami</p>
+                  <p class="output">anish_kumar_vedant</p>
+                  <p class="cmd">$ certs</p>
+                  <p class="output">CompTIA Security plus, ISC2 Certified in Cybersecurity, Red Hat system administration training, Google Foundations of Cybersecurity, Python for Cybersecurity.</p>
+                  <p class="cmd">$ stack</p>
+                  <p class="output">
+                    Nmap, Burp Suite, Metasploit, Wireshark, Security Onion, Wazuh, Caldera,
+                    Python, Bash, PowerShell, Linux, Windows, Raspberry Pi, Pi hole, WireGuard,
+                    pfSense, VPNs, Git, SQL, cloud and container basics.
+                  </p>
+                  <p class="cmd">$ current_focus</p>
+                  <p class="output">
+                    Real world style SOC work, cloud and endpoint security, GPU security
+                    research, and offensive labs that directly inform blue team detections.
+                  </p>
+                  <p class="comment"># packets, logs, or it did not happen.</p>
+                </div>
+              </aside>
+
+              <p class="hero-text">
+                I am a recent MS Cybersecurity and Networks graduate with around 2 years of experience working in cybersecurity across internships, research roles, and hands on labs. I like to learn by doing and move between building secure networks, simulating attacks, analyzing logs, and writing clear explanations so others can repeat the work.
+              </p>
+              <p class="hero-text">
+                My background starts in electrical engineering and IoT where I spent a year as a student intern at Peak Power Consultancy building real time EV monitoring on ESP32 and CAN. That grew into intrusion detection for cyber physical power systems and secure energy systems as an undergraduate researcher, which led to three IEEE indexed publications and a regional Research Excellence award. Today I am a Graduate Research Assistant at the University of New Haven working with Prof. Shivanjali Khare on a literature driven study of GPU security across vendors like NVIDIA and AMD.
+              </p>
+              <p class="hero-text">
+                On the cybersecurity side I run a homelab with Pi hole and Unbound, WireGuard and VPNs, pfSense, Security Onion, Wazuh, phishing simulation, and Active Directory style labs. I stay active on CTF platforms, including BSides Pros v Joes, TryHackMe, and Hack The Box, practice offensive skills with tools like Nmap, Burp Suite, Metasploit, and Caldera, and keep my defensive skills sharp through log analysis and incident response themed labs.
+              </p>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">20+</div>
+              <div class="stat-label">Security projects and labs</div>
+              <div class="stat-caption">
+                DNS firewalls, VPN setups, phishing labs, scripting, and
+                research driven security experiments.
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">CTFs and challenges</div>
+              <div class="stat-caption">
+                From BSides events and internal CTFs to TryHackMe and
+                Hack The Box style targets.
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">3</div>
+              <div class="stat-label">IEEE publications</div>
+              <div class="stat-caption">
+                Cyber physical power system intrusion detection, transformer
+                monitoring, and blockchain for vehicle to grid.
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Leadership roles</div>
+              <div class="stat-caption">
+                Graduate councils, student communities, outreach, and
+                orientation work that keeps everything human.
+              </div>
+            </div>
+          </div>
+
+          <p class="section-intro">
+            I like roles where I can keep building practical security tools and workflows,
+            tuning detections, and helping teams understand why a finding actually matters.
+            The rest of this portfolio breaks down that story into experience, skills,
+            projects, and proof through certifications and achievements.
+          </p>
+        </section>
+
+        <section id="experience" class="tab-section">
+          <div class="section-title">Experience &amp; Skills</div>
+          <h2 class="section-heading">
+            Engineering, security, and <span>hands on execution</span>.
+          </h2>
+          <div class="two-column">
+            <div>
+              <section class="stack-section">
+                <div class="stack-title">Experience &amp; leadership</div>
+
+                <article class="item-card">
+                  <div class="item-title">Graduate Research Assistant</div>
+                  <div class="item-meta">
+                    University of New Haven · Sep 2025 to Present · West Haven, Connecticut 
+                  </div>
+                  <p class="item-description">
+                    Working with Prof. Shivanjali Khare on an in depth, literature based project that compares how GPU security has evolved across major vendors like NVIDIA and AMD.
+                  </p>
+                  <ul class="item-list">
+                    <li>
+                      Review academic research, public vulnerability disclosures, and vendor documentation to understand real world GPU attacks, vulnerabilities, and security guardrails.
+                    </li>
+                    <li>
+                      Build comparative tables that connect hardware features, firmware protections, and software controls with practical attack scenarios and mitigations.
+                    </li>
+                    <li>
+                      Use Python, spreadsheets, and reference managers to systematically track sources, extract key technical details, and avoid duplicate or biased data.
+                    </li>
+                    <li>
+                      Regularly summarize interim insights for my advisor and support a research paper that highlights trends, gaps, and future directions in GPU security for academic and industry readers.
+                    </li>
+                  </ul>
+                </article>
+
+                <article class="item-card">
+                  <div class="item-title">Cybersecurity and IoT Engineer, Intern</div>
+                  <div class="item-meta">
+                    Peak Power Consultancy Pvt Ltd · Jul 2022 to Jun 2023 · Thane, India 
+                  </div>
+                  <p class="item-description">
+                    Worked on an end to end EV monitoring stack that combined embedded hardware, web development, cloud services, and security controls for real time power system monitoring.
+                  </p>
+                  <ul class="item-list">
+                    <li>
+                      Designed a custom power metering and fault detection circuit around an ESP32 using CAN to track voltage, current, temperature, and fault states.
+                    </li>
+                    <li>
+                      Built and secured a Flask based dashboard and API for live EV telemetry using input validation, authentication checks, and safe session handling so it could be used as an internal engineering tool.
+                    </li>
+                    <li>
+                      Implemented an LSTM based battery health model and exposed it via a secure Flask API with basic anomaly checks and alerts for remote monitoring.
+                    </li>
+                    <li>
+                      Hardened an MQTT and AWS pipeline with TLS, certificate based device identity, and least privilege IAM roles for topics, storage, and APIs so live and historical data could be accessed without exposing raw endpoints.
+                    </li>
+                    <li>
+                      Acted as security owner using Nmap, OpenSSL, Burp Suite, and Snort to review services, test for common web vulnerabilities, and define simple runbooks for login failures, unusual IP ranges, and traffic spikes.
+                    </li>
+                  </ul>
+                </article>
+
+                <article class="item-card">
+                  <div class="item-title">Graduate leadership, student engagement, and support roles</div>
+                  <div class="item-meta">
+                    University of New Haven · 2023 to 2025
+                  </div>
+                  <p class="item-description">
+                    Combined technical work with leadership and service roles that strengthened my communication, documentation, and community building skills.
+                  </p>
+                  <ul class="item-list">
+                    <li>
+                      Served as Vice President of Public Relations for the Graduate Student Council, leading creative marketing, branding, social media, and event documentation for graduate students.
+                    </li>
+                    <li>
+                      Worked as a Campus Connector and Orientation Support staff with the Office of Graduate and International Student Life, helping incoming students with onboarding, campus tours, and resource navigation.
+                    </li>
+                    <li>
+                      Supported the Office of Graduate Admissions as a Graduate Assistant, securing time sensitive application workflows in Slate, verifying academic records, and applying access control and data integrity best practices.
+                    </li>
+                    <li>
+                      Led community outreach for the Indian Student Council and volunteered as an event photographer, supporting large cultural events such as Diwali and helping create a welcoming campus experience.
+                    </li>
+                  </ul>
+                </article>
+              </section>
+
+              <section class="stack-section">
+  <div class="stack-title">Education</div>
+
+  <article class="item-card">
+    <div class="item-title">MS in Cybersecurity and Networks</div>
+    <div class="item-meta">
+      University of New Haven · GPA 3.83 · Aug 2023 to May 2025
+    </div>
+    <p class="item-description">
+      Graduate program focused on offensive security, blue team operations, network engineering,
+      and secure systems, with a strong emphasis on labs, projects, and community involvement.
+    </p>
+    <ul class="item-list">
+      <li>
+        Coursework across ethical hacking, cryptography and data security, digital forensics,
+        incident response, Unix and Linux administration, enterprise network design, security
+        architecture, and scripting for automation.
+      </li>
+      <li>
+        Built and maintained homelabs with Pi hole, Unbound, WireGuard, pfSense, Security Onion,
+        Wazuh, phishing simulation, Active Directory style labs, and Python based automation for
+        log parsing, data collection, and attack simulation.
+      </li>
+      <li>
+        Graduate Research Assistant working with Prof. Shivanjali Khare on a literature driven
+        study of GPU security across vendors like NVIDIA and AMD, connecting academic papers,
+        vendor documentation, and real world vulnerabilities into a structured security view.
+      </li>
+      <li>
+        Held multiple leadership and service roles including Vice President of Public Relations
+        for the Graduate Student Council, Campus Connector, and community outreach work with the
+        Indian Student Council, strengthening communication and technical storytelling skills.
+      </li>
+      <li>
+        Recognized with the Distinguished Service Award from the Office of Graduate &amp;
+        International Student Life for sustained contributions to the graduate student community.
+      </li>
+    </ul>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">BE in Electrical Engineering</div>
+    <div class="item-meta">
+      St Francis Institute of Technology · Grade 8.13 · Aug 2019 to May 2023
+    </div>
+    <p class="item-description">
+      Electrical engineering degree that combined power systems, embedded systems, IoT, and
+      software, and laid the foundation for later work in cyber physical and cybersecurity domains.
+    </p>
+    <ul class="item-list">
+      <li>
+        Coursework in power systems, automation and control, cyberlaw, computer programming,
+        databases, operating systems, artificial intelligence and machine learning, and energy
+        systems, giving a strong technical base across both hardware and software.
+      </li>
+      <li>
+        Worked as an undergraduate researcher on cyber physical power systems and secure energy
+        systems, leading to three IEEE indexed conference papers on intrusion detection,
+        transformer monitoring, and a PBFT blockchain for secure vehicle to grid energy trading.
+      </li>
+      <li>
+        Led and contributed to multiple applied projects, including IoT and automation builds and
+        ML based energy and recommendation systems that connected theory with practical
+        implementations.
+      </li>
+      <li>
+        Awarded first place in the Research Excellence (Undergraduate Student Regional) category
+        at the IEI NMLC FCRIT Excellence Awards 2023, and first place at the Electrical Symposium
+        2023 for research and project work.
+      </li>
+      <li>
+        Active member of IEEE and the Electrical Engineering Students Association, often helping
+        with technical events, photography, and documentation, and building early experience in
+        presenting technical work to mixed audiences.
+      </li>
+    </ul>
+  </article>
+</section>
+
+            </div>
+
+<section class="stack-section">
+  <div class="stack-title">Technical skills</div>
+
+  <article class="item-card">
+    <div class="item-title">Security operations and blue team</div>
+    <p class="item-description">
+      Experience reading and correlating logs, working with detection tools,
+      and simulating SOC workflows from alert triage through containment and follow up.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">SIEM concepts</span>
+      <span class="pill">Security Onion</span>
+      <span class="pill">Wazuh</span>
+      <span class="pill">Snort / IDS</span>
+      <span class="pill">Log analysis</span>
+      <span class="pill">Packet capture</span>
+      <span class="pill">Wireshark</span>
+      <span class="pill">Tcpdump</span>
+      <span class="pill">Incident response</span>
+      <span class="pill">Phishing analysis</span>
+      <span class="pill">NIST basics</span>
+      <span class="pill">Disk encryption</span>
+      <span class="pill">Network security implementation</span>
+      <span class="pill">Security monitoring</span>
+      <span class="pill">Linux log forensics</span>
+    </div>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">Offensive security and CTF</div>
+    <p class="item-description">
+      Use offensive tooling to understand attacker workflows and then translate
+      those paths into better detections, hardening steps, and playbooks.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">Nmap</span>
+      <span class="pill">Burp Suite</span>
+      <span class="pill">Metasploit</span>
+      <span class="pill">SQLMap</span>
+      <span class="pill">Hydra</span>
+      <span class="pill">John / Hashcat</span>
+      <span class="pill">Kali Linux</span>
+      <span class="pill">Pre attack recon</span>
+      <span class="pill">Web app security</span>
+      <span class="pill">Credential attacks</span>
+      <span class="pill">Privilege escalation basics</span>
+      <span class="pill">CTFs &amp; labs</span>
+      <span class="pill">Post exploitation scripting</span>
+    </div>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">Networking, platforms, and homelab</div>
+    <p class="item-description">
+      Build small but realistic environments that mimic enterprise setups
+      and keep everything documented and reproducible.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">Linux &amp; RHEL</span>
+      <span class="pill">Windows client &amp; server</span>
+      <span class="pill">Active Directory</span>
+      <span class="pill">Raspberry Pi</span>
+      <span class="pill">Pi hole &amp; Unbound</span>
+      <span class="pill">WireGuard VPN</span>
+      <span class="pill">pfSense &amp; firewalls</span>
+      <span class="pill">DHCP &amp; DNS</span>
+      <span class="pill">SSH &amp; secure remote access</span>
+      <span class="pill">NAS / storage basics</span>
+      <span class="pill">VirtualBox</span>
+      <span class="pill">VMware</span>
+      <span class="pill">Network segmentation basics</span>
+      <span class="pill">VPN design</span>
+      <span class="pill">Wireless networking</span>
+    </div>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">Programming, data, and automation</div>
+    <p class="item-description">
+      Use scripting and data analysis to speed up recon, analysis, and reporting,
+      and to support machine learning driven research and tooling.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">Python</span>
+      <span class="pill">Bash scripting</span>
+      <span class="pill">PowerShell</span>
+      <span class="pill">C / C++ basics</span>
+      <span class="pill">Flask &amp; REST APIs</span>
+      <span class="pill">Django basics</span>
+      <span class="pill">JavaScript</span>
+      <span class="pill">HTML &amp; CSS</span>
+      <span class="pill">SQL / MySQL</span>
+      <span class="pill">MongoDB</span>
+      <span class="pill">NumPy</span>
+      <span class="pill">Pandas</span>
+      <span class="pill">Scikit learn</span>
+      <span class="pill">TensorFlow</span>
+      <span class="pill">Streamlit</span>
+      <span class="pill">Git &amp; GitHub</span>
+      <span class="pill">MATLAB &amp; Simulink</span>
+    </div>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">Cloud, IoT, and security fundamentals</div>
+    <p class="item-description">
+      Connect cloud services, IoT, and core security principles so that lab work
+      stays aligned with real environments and governance requirements.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">AWS basics &amp; IAM</span>
+      <span class="pill">MQTT</span>
+      <span class="pill">ESP32 microcontrollers</span>
+      <span class="pill">IoT security</span>
+      <span class="pill">TLS / HTTPS</span>
+      <span class="pill">Encryption &amp; cryptography</span>
+      <span class="pill">Password management</span>
+      <span class="pill">Cybersecurity fundamentals</span>
+      <span class="pill">Network security</span>
+      <span class="pill">Cyber defense</span>
+      <span class="pill">Risk and cyber security risk</span>
+      <span class="pill">Research &amp; documentation</span>
+    </div>
+  </article>
+
+  <article class="item-card">
+    <div class="item-title">Tools, platforms, and extras</div>
+    <p class="item-description">
+      Extra tools that show up across projects, labs, and side work, especially
+      when documenting findings or presenting results.
+    </p>
+    <div class="pill-row">
+      <span class="pill alt">Kali Linux tooling</span>
+      <span class="pill">Android &amp; Kotlin basics</span>
+      <span class="pill">Node.js sockets</span>
+      <span class="pill">Arduino &amp; embedded</span>
+      <span class="pill">Photoshop</span>
+      <span class="pill">Lightroom</span>
+      <span class="pill">Technical writing</span>
+      <span class="pill">Teaching &amp; mentoring peers</span>
+    </div>
+  </article>
+</section>
+</section>
+
+
+        <section id="projects" class="tab-section">
+          <div class="section-title">Projects</div>
+          <h2 class="section-heading">
+            Turning lab ideas into <span>usable security tools</span>.
+          </h2>
+          <p class="section-intro">
+            These projects come directly from my GitHub and homelab work.
+            They combine blue team thinking, offensive techniques, research, and clear
+            write ups. GitHub links are provided for all public repositories.
+          </p>
+
+          <div class="grid-3">
+            <article class="project-card">
+              <div class="project-tagline">Network Security</div>
+              <div class="project-title">WireGuard VPN Setup on Raspberry Pi 5</div>
+              <p class="project-description">
+                Weekend build where I deployed a WireGuard VPN with Pi hole on a Raspberry Pi 5
+                to get network wide DNS filtering even when I am off site.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Raspberry Pi</span>
+                <span class="badge">Pi hole</span>
+                <span class="badge">WireGuard</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/WireGuard-VPN-Setup-on-Raspberry-Pi-5"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Security Awareness</div>
+              <div class="project-title">GoPhish Phishing Simulation Lab</div>
+              <p class="project-description">
+                End-to-end GoPhish lab: plan, run, and analyze phishing simulations with
+                templates, cloned landing pages, SMTP setup, and full reporting.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">GoPhish</span>
+                <span class="badge">SMTP</span>
+                <span class="badge">Reporting</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Gophish-Phishing-Simulation-Lab"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Network Defense</div>
+              <div class="project-title">PiHole Ultimate DNS Firewall</div>
+              <p class="project-description">
+                Transformed a Raspberry Pi into an enterprise-grade DNS firewall that eliminates
+                ads, trackers, malware, and telemetry across all devices.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Pi-hole</span>
+                <span class="badge">Unbound</span>
+                <span class="badge">Firewall</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/PiHole-Ultimate-DNS-Firewall"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">SOC Simulation</div>
+              <div class="project-title">Cybersecurity Home Lab</div>
+              <p class="project-description">
+                Virtualized cybersecurity home lab built on VirtualBox featuring pfSense,
+                Wazuh, MITRE Caldera, Nessus, and Active Directory for red teaming.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Wazuh</span>
+                <span class="badge">pfSense</span>
+                <span class="badge">Active Directory</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Cybersecurity-Home-Lab"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Malware Analysis</div>
+              <div class="project-title">Hidden Keylogger</div>
+              <p class="project-description">
+                Techniques for gathering system and network information, capturing user
+                activity (clipboard/keys), and encrypting data using AES.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">AES</span>
+                <span class="badge">Scanner</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Hidden-Keylogger"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Cryptography</div>
+              <div class="project-title">Secure Chat Application</div>
+              <p class="project-description">
+                A secure chat application implemented using Python. Uses RSA encryption
+                for secure message exchange between clients and a server.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">RSA</span>
+                <span class="badge">Sockets</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Chat-box-application"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">OS Algorithms</div>
+              <div class="project-title">Round Robin Scheduler</div>
+              <p class="project-description">
+                Python script that simulates a thread scheduler using round-robin scheduling
+                with priority, providing insights into CPU performance.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">Algorithms</span>
+                <span class="badge">CPU</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Round-robin-scheduler"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Python Automation</div>
+              <div class="project-title">Notification Reminder</div>
+              <p class="project-description">
+                Simple Python script for sending customizable desktop notifications.
+                Designed to be flexible and easy to use for alert automation.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">Automation</span>
+                <span class="badge">Scripting</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Notification-Reminder"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Python GUI</div>
+              <div class="project-title">Tic-Tac-Toe</div>
+              <p class="project-description">
+                A modern implementation of the classic Tic Tac Toe game built with Python
+                and Pygame, featuring custom graphics.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">Pygame</span>
+                <span class="badge">Game Dev</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Tic-Tac-Toe"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Python GUI</div>
+              <div class="project-title">Snake Game</div>
+              <p class="project-description">
+                Modern take on the classic Snake game, built using Python and Pygame.
+                Features sound effects and a highscore tracking system.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">Pygame</span>
+                <span class="badge">Game Dev</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Snake-game"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Cryptography</div>
+              <div class="project-title">End-to-End Encryption</div>
+              <p class="project-description">
+                Demonstrates E2EE using Python sockets. Implements x25519 key exchange
+                and AES encryption for secure client-server communication.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">AES</span>
+                <span class="badge">x25519</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/End-to-End-Encryption"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="project-card">
+              <div class="project-tagline">Automation</div>
+              <div class="project-title">Bot</div>
+              <p class="project-description">
+                Python based bot automation script. Developed for internal testing and
+                task automation purposes.
+              </p>
+              <div class="badge-row">
+                <span class="badge primary">Python</span>
+                <span class="badge">Automation</span>
+                <span class="badge">Bot</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://github.com/anishvedant/Bot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Project
+                <span class="arrow">↗</span>
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <section id="certs" class="tab-section">
+          <div class="section-title">Certifications &amp; Achievements</div>
+          <h2 class="section-heading">
+            Learning backed by <span>credentials and impact</span>.
+          </h2>
+          <p class="section-intro">
+            A comprehensive view of my professional certifications, academic honors, 
+            competitions, and volunteering leadership that demonstrate continuous learning
+            and community engagement.
+          </p>
+
+          <section class="stack-section">
+            <div class="stack-title">Professional Certifications</div>
+            <div class="cert-grid">
+              <article class="cert-card">
+                <div class="cert-title">CompTIA Security+ (SY0-701)</div>
+                <div class="cert-issuer">CompTIA</div>
+                <p class="cert-notes">
+                  Validates core security skills across network security, identity and access,
+                  incident response, risk management, and governance. Served as a foundational step for
+                  SOC work and blue team thinking.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Network security</span>
+                  <span class="badge">Incident response</span>
+                  <span class="badge">Risk management</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Certified in Cybersecurity (CC)</div>
+                <div class="cert-issuer">ISC2</div>
+                <p class="cert-notes">
+                  Covers security principles, business continuity, access control, operations
+                  security, and network security concepts and helps connect technical work
+                  with policy and control frameworks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Security fundamentals</span>
+                  <span class="badge">Access control</span>
+                  <span class="badge">Operations security</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Red Hat System Administration</div>
+                <div class="cert-issuer">Red Hat Academy</div>
+                <p class="cert-notes">
+                  Completed RH124, RH134, and RH294. Focused on RHEL, secure remote access, Bash scripting, SELinux, user 
+                  and permission management, and network services which I apply directly in lab environments.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">RHEL</span>
+                  <span class="badge">Bash scripting</span>
+                  <span class="badge">Server hardening</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Industrial Intrusion Certificate</div>
+                <div class="cert-issuer">TryHackMe · Issued Jul 2025</div>
+                <p class="cert-notes">
+                  Hands-on training focused on securing ICS and SCADA systems, understanding
+                  OT protocols, and defending critical infrastructure against targeted attacks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">ICS/SCADA</span>
+                  <span class="badge">OT Security</span>
+                  <span class="badge">Critical Infrastructure</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Cybersecurity Job Simulation</div>
+                <div class="cert-issuer">Forage (Mastercard) · Issued Jun 2025</div>
+                <p class="cert-notes">
+                  Completed a job simulation involving phishing analysis, security awareness training,
+                  and data protection strategies, mirroring real-world analyst tasks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Phishing Analysis</span>
+                  <span class="badge">GRC</span>
+                  <span class="badge">Security Awareness</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Cybersecurity Analyst Job Simulation</div>
+                <div class="cert-issuer">Forage (Tata Group) · Issued Jun 2025</div>
+                <p class="cert-notes">
+                  Worked on Identity and Access Management (IAM) strategy, documentation, and integration challenges 
+                  in a global enterprise environment simulation.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">IAM</span>
+                  <span class="badge">Strategy</span>
+                  <span class="badge">Consulting</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Google Foundations of Cybersecurity</div>
+                <div class="cert-issuer">Google</div>
+                <p class="cert-notes">
+                  Introduced structured SOC workflows, SIEM usage, Linux basics, SQL,
+                  and core security principles which now back my homelab and CTF work.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">SOC fundamentals</span>
+                  <span class="badge">Linux</span>
+                  <span class="badge">SQL</span>
+                </div>
+              </article>
+
+              <article class="cert-card">
+                <div class="cert-title">Python for Cybersecurity and Ethical Hacking courses</div>
+                <div class="cert-issuer">InfoSec, Internshala, Coursera, and university</div>
+                <p class="cert-notes">
+                  Multiple courses across Python for cybersecurity, ethical hacking, web
+                  application security, machine learning, and IoT security that support my
+                  scripting and research projects.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Python</span>
+                  <span class="badge">Ethical hacking</span>
+                  <span class="badge">Machine learning</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="stack-section">
+            <div class="stack-title">Competitions & CTFs</div>
+            <div class="cert-grid">
+              <article class="item-card">
+                <div class="item-title">NSA Codebreaker Challenge</div>
+                <div class="item-issuer">National Security Agency</div>
+                <p class="item-description">
+                  Solved mission-centric reverse engineering and cryptanalysis challenges involving real-world scenarios to track and neutralize simulated threats.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Reverse Engineering</span>
+                  <span class="badge">Cryptanalysis</span>
+                  <span class="badge">Mission-Centric</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">BSidesNYC 2025 — Pros v Joes CTF</div>
+                <div class="item-meta">John Jay College (CUNY) · Oct 18, 2025</div>
+                <p class="item-description">
+                  Competed as a Blue Team member in a live SOC simulation. Defended environments
+                  against a relentless Red Team by monitoring systems, analyzing logs, patching services,
+                  and coordinating defense strategies in a high-pressure scenario.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Blue Team</span>
+                  <span class="badge">SOC</span>
+                  <span class="badge">Incident Response</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">Security BSidesCT CTF</div>
+                <div class="item-meta">Sacred Heart University · Sep 20, 2025</div>
+                <p class="item-description">
+                  Finished <strong>5th</strong> in the "Army of One" bracket and <strong>10th overall</strong>
+                  with 3,734 points out of 83 players. Solved challenges across various domains using
+                  tools and "living off the land" techniques.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Top 10</span>
+                  <span class="badge">CTF</span>
+                  <span class="badge">Solo</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">TryHackMe Industrial Intrusion CTF</div>
+                <div class="item-meta">Jun 2025</div>
+                <p class="item-description">
+                  Ranked <strong>278th</strong> out of 3,000+ active teams with 472.5 points.
+                  Focused on ICS enumeration, web API exploration, Node-RED exploitation, and Modbus/PLC tasks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">ICS/OT</span>
+                  <span class="badge">Node-RED</span>
+                  <span class="badge">Modbus</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">CBC Community of Practice CTF</div>
+                <div class="item-meta">NCCoE · May 2025</div>
+                <p class="item-description">
+                  Secured <strong>7th place</strong> with 1300 points out of 41 active players.
+                  Challenges covered Forensics, OSINT, Steganography, Cryptography, and Reverse Engineering.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">7th Place</span>
+                  <span class="badge">Crypto</span>
+                  <span class="badge">Forensics</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">CIT CTF 2025</div>
+                <div class="item-meta">University of New Haven · Apr 2025</div>
+                <p class="item-description">
+                  Team "CTF Chargers" secured <strong>136th spot</strong> out of 950 competing teams.
+                  Personally earned <strong>9,720 points</strong> tackling Reverse Engineering, Web Exploitation,
+                  and Forensics challenges.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Reverse Engineering</span>
+                  <span class="badge">Web Exp</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">JerseyCTF V 2025</div>
+                <div class="item-meta">NJIT · Mar 2025</div>
+                <p class="item-description">
+                  Secured <strong>54th place</strong> out of 400+ teams in a 24-hour Jeopardy-style competition.
+                  Leveraged Ghidra, CyberChef, and Python scripting to automate flag hunting and solve binary exploitation tasks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Top 15%</span>
+                  <span class="badge">Binary Exp</span>
+                  <span class="badge">Scripting</span>
+                </div>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">Jigsaw Phishing Quiz</div>
+                <div class="item-meta">Google Jigsaw · 2025</div>
+                <p class="item-description">
+                  Achieved a perfect score of <strong>10/10</strong> in Google Jigsaw's advanced phishing quiz, demonstrating sharp skills in identifying sophisticated social engineering attacks.
+                </p>
+                <div class="badge-row">
+                  <span class="badge primary">Phishing</span>
+                  <span class="badge">Social Engineering</span>
+                  <span class="badge">Awareness</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="stack-section">
+            <div class="stack-title">Honors & Awards</div>
+            <div class="split-grid">
+              <article class="item-card">
+                <div class="item-title">Distinguished Service Award</div>
+                <div class="item-meta">Office of Graduate & International Student Life, UNH · Apr 2025</div>
+                <p class="item-description">
+                  Awarded for sustained contributions to the graduate student community. Recognized for
+                  leadership in supporting peers, organizing initiatives, and serving as a reliable
+                  mentor and resource for incoming students.
+                </p>
+              </article>
+
+              <article class="item-card">
+                <div class="item-title">1st Place, Research Excellence (Regional)</div>
+                <div class="item-meta">IEI NMLC FCRIT Excellence Awards · Jun 2023</div>
+                <p class="item-description">
+                  Awarded first place in the Undergraduate Student Regional category for research work.
+                  This achievement recognized the successful publication of three IEEE conference papers
+                  and significant contributions to engineering research projects.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <section class="stack-section">
+            <div class="stack-title">Volunteering & Leadership</div>
+            <div class="two-column">
+              <div>
+                <article class="item-card">
+                  <div class="item-title">Vice President of Public Relations</div>
+                  <div class="item-meta">Graduate Student Council, UNH · Sep 2024 - Present</div>
+                  <ul class="item-list">
+                    <li><strong>Creative Marketing:</strong> Designing flyers and branding materials for campus events.</li>
+                    <li><strong>Social Media:</strong> Managing accounts to ensure consistent engagement and presence.</li>
+                    <li><strong>Event Documentation:</strong> Photographing key GSC and OGISL events.</li>
+                    <li><strong>Outreach:</strong> Conducting interviews to highlight student and faculty stories.</li>
+                  </ul>
+                </article>
+
+                <article class="item-card">
+                  <div class="item-title">Campus Connector</div>
+                  <div class="item-meta">University of New Haven · Aug 2024 - Dec 2024</div>
+                  <ul class="item-list">
+                    <li>Facilitated onboarding for incoming graduate and international students.</li>
+                    <li>Led campus tours and informational sessions to improve student retention.</li>
+                    <li>Provided guidance on academic resources and cultural integration.</li>
+                  </ul>
+                </article>
+              </div>
+              <div>
+                <article class="item-card">
+                  <div class="item-title">Head of Community Outreach</div>
+                  <div class="item-meta">Indian Student Council · Jan 2024 - Jan 2025</div>
+                  <ul class="item-list">
+                    <li>Led recruitment efforts using digital tools like QR codes for seamless sign-ups.</li>
+                    <li>Collaborated with council members to support diversity initiatives.</li>
+                    <li>Managed member feedback and attendance tracking for large-scale events.</li>
+                  </ul>
+                </article>
+
+                <article class="item-card">
+                  <div class="item-title">Event Photographer</div>
+                  <div class="item-meta">Indian Student Council · Nov 2023</div>
+                  <ul class="item-list">
+                    <li>Documented the major Diwali event, capturing performances and activities.</li>
+                    <li>Assisted with event logistics and setup to ensure smooth execution.</li>
+                    <li>Collaborated with the team to create a welcoming festive atmosphere.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="stack-section">
+            <div class="stack-title">Publications</div>
+            <div class="split-grid">
+              <div>
+                <article class="item-card">
+                  <div class="item-title">
+                    Detecting Cyber Attacks in a Cyber physical Power System: A Machine Learning Based Approach
+                  </div>
+                  <div class="item-meta">IEEE · Dec 2022</div>
+                  <p class="item-description">
+                    Proposed and evaluated a machine learning based intrusion detection approach
+                    for cyber physical power systems by comparing classifiers on accuracy,
+                    precision, recall, and F1 score against attack scenarios.
+                  </p>
+                  <a
+                    class="project-link"
+                    href="https://ieeexplore.ieee.org/document/9986990"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Publication
+                    <span class="arrow">↗</span>
+                  </a>
+                </article>
+                <article class="item-card">
+                  <div class="item-title">
+                    A Machine Learning Approach to Transformer Oil Temperature Monitoring Using Load Analysis
+                  </div>
+                  <div class="item-meta">IEEE · Dec 2022</div>
+                  <p class="item-description">
+                    Used machine learning models to predict transformer oil temperature based on
+                    load conditions to help utilities detect faults early and maintain reliability.
+                  </p>
+                  <a
+                    class="project-link"
+                    href="https://ieeexplore.ieee.org/document/9986623"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Publication
+                    <span class="arrow">↗</span>
+                  </a>
+                </article>
+              </div>
+              <div>
+                <article class="item-card">
+                  <div class="item-title">
+                    A Practical Byzantine Fault Tolerance Blockchain for Securing Vehicle to Grid Energy Trading
+                  </div>
+                  <div class="item-meta">IEEE · Dec 2022</div>
+                  <p class="item-description">
+                    Explored a blockchain approach to secure communication and transactions between
+                    electric vehicles and the grid using a practical Byzantine fault tolerant
+                    style architecture.
+                  </p>
+                  <a
+                    class="project-link"
+                    href="https://ieeexplore.ieee.org/document/9986685"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Publication
+                    <span class="arrow">↗</span>
+                  </a>
+                </article>
+              </div>
+            </div>
+          </section>
+
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>
+        <span class="strong">Anish Kumar Vedant</span> · Cybersecurity and Networks
+      </span>
+      <span>Built from LinkedIn, notes, CTFs, and a lot of packet captures.</span>
+    </footer>
+  </div>
+
+  <script>
+    // Tab navigation
+    (function () {
+      const links = document.querySelectorAll(".nav-link[data-section]");
+      const sections = document.querySelectorAll(".tab-section");
+
+      function activate(sectionId) {
+        sections.forEach((sec) => {
+          sec.classList.toggle("active", sec.id === sectionId);
+        });
+        links.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("data-section") === sectionId
+          );
+        });
+      }
+
+      links.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = link.getAttribute("data-section");
+          activate(id);
+        });
+      });
+    })();
+
+    // Simple matrix background
+    (function () {
+      const canvas = document.getElementById("matrix-bg");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      let width, height, columns, drops;
+      const chars = "01abcdefghijklmnopqrstuvwxyz#$%&*+<>";
+
+      function reset() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        columns = Math.floor(width / 18);
+        drops = Array.from({ length: columns }, () => Math.random() * height);
+      }
+
+      function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = "#22c55e";
+        ctx.font = "14px monospace";
+
+        for (let i = 0; i < columns; i++) {
+          const text = chars.charAt(
+            Math.floor(Math.random() * chars.length)
+          );
+          ctx.fillText(text, i * 18, drops[i] * 18);
+
+          if (drops[i] * 18 > height && Math.random() > 0.95) {
+            drops[i] = 0;
+          } else {
+            drops[i] += 0.9 + Math.random() * 0.5;
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener("resize", reset);
+      reset();
+      draw();
+    })();
+  </script>
+</body>
+</html>

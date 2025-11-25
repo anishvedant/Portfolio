@@ -18,11 +18,13 @@
 
 ### 👨‍💻 About Me
 
-I am a **Cybersecurity Analyst** and **Master’s Graduate** with a passion for defensive security, threat intelligence, and automation. I bridge the gap between software development and security operations to build resilient systems.
+I am a **Cybersecurity Engineer** and **Graduate Research Assistant** bridging the gap between hardware-level security and SOC operations. I specialize in Threat Intelligence, OT/ICS Security, and automating defenses.
 
-- 🔭 I’m currently working on a **Custom Password Manager & Malware Analysis Labs**.
-- 👯 I’m looking to collaborate on **Blue Team tools and Open Source Security projects**.
-- 🎓 I hold a **Master's in Cybersecurity and Networks** (GPA 3.83).
+- 🔭 I’m currently researching **GPU Security & Vulnerabilities** at the University of New Haven.
+- 🛡️ I’m building and refining a **Virtualized SOC Home Lab** with Wazuh & pfSense.
+- 👯 I’m looking to collaborate on **CTF Teams (Blue/Red)**, **Threat Hunting** research, or **IoT Security** projects.
+- 🎓 I hold a **Master's in Cybersecurity and Networks** (GPA 3.83) and am **CompTIA Security+** certified.
+- 📸 When I'm not analyzing logs, I'm an **Event Photographer** capturing moments.
 - ⚡ **Fun fact:** I use backspace more than arrow keys.
 
 ---
@@ -43,18 +45,18 @@ I am a **Cybersecurity Analyst** and **Master’s Graduate** with a passion for 
 
 ---
 
-### 📊 GitHub Analytics
+### 🏆 GitHub Trophies & Activity
 
 <div align="center">
-  <br>
-  <img src="https://github-readme-stats.vercel.app/api?username=anishvedant&show_icons=true&theme=radical&hide_border=true&bg_color=020617&title_color=22c55e&icon_color=4ade80" height="165" alt="anishvedant's stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=anishvedant&layout=compact&theme=radical&hide_border=true&bg_color=020617&title_color=22c55e" height="165" alt="anishvedant's top languages" />
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=anishvedant&theme=radical&no-frame=true&column=6&margin-w=15&margin-h=15" alt="anishvedant trophies" />
+  </a>
 </div>
 
 <br>
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=anishvedant&theme=radical&hide_border=true&background=020617&ring=22c55e&fire=22c55e&currStreakLabel=22c55e" alt="anishvedant's streak" />
+  <img src="http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=anishvedant&theme=radical" alt="Anish's Profile Details" />
 </div>
 
 ---
